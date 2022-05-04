@@ -1,119 +1,15 @@
-# GiiBee CMS
 
-> The CMS system developed by nest.js based on node.js and nuxt.js based on vue.js is used to implement SSR server-side rendering and generate static HTML, which is conducive to SEO.Suitable for enterprises to build SEO-type websites.
+## 前端Serverless架构重构系统性介绍
+本代码仓库实用开源项目  [GiiBee CMS] 进行Serverless架构重构，分章节来为大家展示如何对传统的前端项目进行Serverless架构改造，结合阿里云的Serverless Stack，在不改变传统技术栈的情况下实现一个具备高扩展能力，稳定安全，弹性伸缩，低成本，少运维的实用在线CMS/电商系统，帮助前端工程师掌握基于阿里云Serverless的技术栈，成为云上的全栈工程师。
 
+### 章节如下
 
-English | [简体中文](./README.zh-CN.md)
+#### chapter1 传统前端应用Serverless架构重构思路介绍
+#### chapter2 Serverless应用重构实操
 
+#### chapter3 Serverless应用性能优化方案
+#### chapter4 Serverless应用系统及业务的可观测介绍
 
-## Getting started
+#### chapter5 测试一下Serverless应用的真实的性能，性能压测介绍
+#### chapter6 事件驱动，Serverless应用的最佳扩展方案
 
-### MySql
-
-1. Create the `nest_cms_api` table;
-
-2. Use MySql command or management software to import the `.sql` file in the `DB` directory.
-
-### CMS API server
-
-```bash
-cd server
-
-npm install 
-
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-* Serve: [http://localhost:3000/](http://localhost:3000/)
-* API documentation: [http://localhost:3000/api/](http://localhost:3000/api/)
-
-### CMS management
-
-```bash
-cd admin
-
-npm install 
-
-# serve with hot reload at localhost:3002
-npm run dev
-
-# build for production and launch server
-
-npm run build:stage
-
-npm run build:prod
-```
-
-* Serve: [http://localhost:3002/](http://localhost:3002/)
-
-
-### CMS web
-
-```bash
-cd web
-
-npm install 
-
-# development
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-* Serve: [http://localhost:3001/](http://localhost:3001/)
-
-
-## Features
-
-* NestJS + MySql output API.
-* API calls sensitive operation records IP, administrator and client information.
-* NuxtJS + Vue + Bootstrap-vue can generate static HTML for the whole site (SEO).
-* Nuxtjs vue implements SSR server-side rendering (SEO).
-* Element UI + Vue realizes CMS management.
-* Front-end and back-end separation.
-* JWT authentication.
-* Commodity classification supports custom routing and web page description (SEO).
-* Product name supports custom routing and web page description (SEO).
-* Responsive web pages, adapted to PC and mobile terminals.
-
-## screenshot
-
-### CMS web
-![home](screenshot/web/mobile-home.png)    
-
-![home](screenshot/web/home.jpg)    
-
-![product](screenshot/web/mobile-product.png)    
-
-![product](screenshot/web/product.jpg)    
-
-![about](screenshot/web/mobile-about.png)    
-![about](screenshot/web/about.jpg)    
-
-### CMS management
-
-![banner](screenshot/admin/banner.png)    
-
-![product](screenshot/admin/product-create.png)    
-
-![product](screenshot/admin/product.png)    
-
-### CMS  API
-
-![API](screenshot/server/api.jpg)    
-
-## License
-
-[Apache License 2.0](LICENSE).
