@@ -19,7 +19,7 @@ const dbInfo = {
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: '123456789',
+  password: 'Abc12345',
 };
 if (ENV === 'prod') {
   dbInfo.host = '10.0.224.4';
@@ -37,7 +37,7 @@ const { host, port, username, password } = dbInfo;
       port,
       username,
       password,
-      database: 'nest_cms_api',
+      database: 'devs',
       entities: [],
       autoLoadEntities: true,
       synchronize: true,
@@ -51,7 +51,7 @@ const { host, port, username, password } = dbInfo;
     UploadModule,
     AuthModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: process.env.staticPath || join(__dirname, '..', 'public'),
     }),
     Log4jsModule.forRoot(),
   ],

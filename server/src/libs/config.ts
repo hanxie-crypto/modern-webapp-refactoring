@@ -8,9 +8,9 @@ const baseHosts = {
 
   // production
   production: {
-    baseHost: 'http://app.api',
-    uploadPath: 'public/',
-    domain: 'www.giibee.com',
+    baseHost: process.env.apiDomain|| 'http://app.api',
+    uploadPath: process.env.staticPath || 'public/',
+    domain: process.env.domain,
   },
 };
 
