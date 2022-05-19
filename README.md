@@ -10,9 +10,9 @@
 + 阿里云ARMS （选开）
 ### 预览地址
 #### portal 页
-http://hanxie-modernweb-registery.oss.devsapp.net/
+http://abc.serverless-developer.com/
 #### 管理员页
-http://hanxie-modernweb-registery.oss.devsapp.net/admin/
+http://abc.serverless-developer.com/admin/
 ### 后台API服务
 #### 测试项目
 我们先测试一下后台部分,按照如下步骤
