@@ -1,0 +1,66 @@
+{
+  "statefulConfig": {
+    "serviceName": "modern-app-new",
+    "description": "Aliyun RAM Role",
+    "role": "acs:ram::1611387345152601:role/aliyunfcdefaultrole",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "8c866f2e-1da9-4641-92f4-d628e9a1bc28",
+    "createdTime": "2022-05-09T09:16:18Z",
+    "lastModifiedTime": "2022-05-11T11:37:46Z",
+    "vpcConfig": {
+      "vpcId": "vpc-bp16w2err60km7zno0l76",
+      "vSwitchIds": [
+        "vsw-bp1ws7xjccfw0lhbxef5e"
+      ],
+      "securityGroupId": "sg-bp1f2r7upbax6mnco6pf",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": 10003,
+      "groupId": 10003,
+      "mountPoints": [
+        {
+          "serverAddr": "0c6db49413-wxa8.cn-hangzhou.nas.aliyuncs.com:/modern-app-new",
+          "mountDir": "/mnt/auto"
+        }
+      ]
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "modern-app-new"
+  },
+  "statefulAutoConfig": {
+    "nasConfig": {
+      "userId": 10003,
+      "groupId": 10003,
+      "mountPoints": [
+        {
+          "serverAddr": "0c6db49413-wxa8.cn-hangzhou.nas.aliyuncs.com:/modern-app-new",
+          "mountDir": "/mnt/auto"
+        }
+      ]
+    },
+    "vpcConfig": {
+      "vpcId": "vpc-bp16w2err60km7zno0l76",
+      "vSwitchIds": [
+        "vsw-bp1ws7xjccfw0lhbxef5e"
+      ],
+      "securityGroupId": "sg-bp1f2r7upbax6mnco6pf",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "role": "acs:ram::1611387345152601:role/aliyunfcdefaultrole"
+  }
+}

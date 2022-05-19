@@ -196,7 +196,6 @@ export default {
         const { data = [], total = 0 } = res
         this.list = data.map(v => {
           let pic = v.pic
-
           if (pic) {
             v.pic = baseHost + pic.replace('public/', '/')
           }

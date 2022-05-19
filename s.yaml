@@ -1,0 +1,128 @@
+edition: 1.0.0
+name: modern-app-new
+access: hanxie
+vars:
+  region: cn-hangzhou
+  fc: 
+    serviceName: 'modern-app-new'
+    functionName: 'modern-app-new'
+    triggers: 'modern-web-api'
+    staticPath: '/mnt/auto/modern-app-new/public'
+    logPath: '/mnt/auto/modern-app-new/logs/application.log'
+  oss:
+    bucketName: 'hanxie-modernweb-registery'
+    bucketObject: 'admin'
+services:
+  www: # 静态资源
+    component: oss
+    props:
+      region: ${vars.region}
+      bucket: ${vars.oss.bucketName} # OSS bucket 自动生成
+      subDir: ${vars.oss.bucketObject}
+      acl: public-read # 读写权限
+      codeUri: ./admin/dist # 指定本地要上传目录文件地址
+      website: # OSS 静态网站配置
+        index: index.html # 默认首页
+        error: 404.html # 默认 404 页
+        subDirType: redirect # 子目录首页 404 规则
+      # customDomains: # OSS 绑定域名
+      #   - domainName: auto
+      #     protocol: HTTP
+  modern-app-new:
+    component: fc
+    actions:
+      post-deploy: # 在deploy之后运行
+      - plugin: keep-warm-fc
+        args:
+          url: http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net
+    # actions:
+    #   post-deploy:
+    #     - component: fc nas upload -r ./server/logs /mnt/auto/modern-app-new
+    #     - component: fc nas upload -r ./server/public /mnt/auto/modern-app-new
+    props:
+      region: ${vars.region}
+      service:
+        name: ${vars.fc.serviceName}
+        description: Aliyun RAM Role
+        internetAccess: true
+        nasConfig: auto
+      function:
+        name: ${vars.fc.functionName}
+        description: Native recording handler
+        timeout: 3000
+        memorySize: 1024
+        runtime: custom
+        environmentVariables:
+          NODE_ENV: production
+          dbHost: 
+          dbPort: 3306
+          dbPassword: 
+          dbUserName: 
+          staticPath: ${vars.fc.staticPath}
+          logPath: ${vars.fc.logPath}
+        codeUri: ./server
+        caPort: 3000
+      triggers:
+        - name: ${vars.fc.triggers}
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              serviceName: ${vars.fc.serviceName}
+              functionName:  ${vars.fc.functionName}
+  modern-app-portal:
+    component: fc
+    actions:
+      post-deploy: # 在deploy之后运行
+      - plugin: keep-warm-fc
+        args:
+          url: http://modern-app-portal.modern-app-portal.1611387345152601.cn-hangzhou.fc.devsapp.net
+    # actions:
+    #   post-deploy:
+    #     - component: fc nas upload -r ./server/logs /mnt/auto/modern-app-new
+    #     - component: fc nas upload -r ./server/public /mnt/auto/modern-app-new
+    props:
+      region: ${vars.region}
+      service:
+        name: modern-app-portal
+        description: Aliyun RAM Role
+        internetAccess: true
+        nasConfig: auto
+      function:
+        name: modern-app-portal
+        description: Native recording handler
+        timeout: 3000
+        memorySize: 1024
+        runtime: custom
+        codeUri: ./web
+        caPort: 3001
+      triggers:
+        - name: modern-app-portal
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              serviceName: modern-app-portal
+              functionName:  modern-app-portal

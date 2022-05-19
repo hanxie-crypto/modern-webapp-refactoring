@@ -1,0 +1,27 @@
+{
+  "statefulConfig": {
+    "triggerName": "modern-web-api",
+    "description": "",
+    "triggerId": "b3c10af6-4eb4-406a-86a5-6fa17bba1415",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": null,
+    "urlInternet": "https://modern-app-new-modern-app-new-aushvromsk.cn-hangzhou.fcapp.run",
+    "urlIntranet": "https://modern-app-new-modern-app-new-aushvromsk.cn-hangzhou-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "HEAD",
+        "OPTIONS"
+      ],
+      "authType": "anonymous"
+    },
+    "createdTime": "2022-05-09T09:17:06Z",
+    "lastModifiedTime": "2022-05-11T11:37:37Z",
+    "name": "modern-web-api"
+  }
+}

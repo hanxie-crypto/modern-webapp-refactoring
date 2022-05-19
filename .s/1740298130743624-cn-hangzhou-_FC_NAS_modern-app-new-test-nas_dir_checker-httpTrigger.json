@@ -1,0 +1,23 @@
+{
+  "statefulConfig": {
+    "triggerName": "httpTrigger",
+    "description": "",
+    "triggerId": "8690ffaa-8b07-4e3d-bc43-1af6de0add6c",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": null,
+    "urlInternet": "https://nas-dir-checker-fc-nas-new-test-vtjlodzjqh.cn-hangzhou.fcapp.run",
+    "urlIntranet": "https://nas-dir-checker-fc-nas-new-test-vtjlodzjqh.cn-hangzhou-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "POST",
+        "GET"
+      ],
+      "authType": "function"
+    },
+    "createdTime": "2022-05-09T05:53:25Z",
+    "lastModifiedTime": "2022-05-09T05:53:25Z",
+    "name": "httpTrigger"
+  }
+}

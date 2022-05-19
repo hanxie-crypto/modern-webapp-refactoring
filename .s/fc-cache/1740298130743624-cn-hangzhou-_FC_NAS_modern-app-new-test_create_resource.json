@@ -1,0 +1,6 @@
+{
+  "serviceName": "_FC_NAS_modern-app-new-test",
+  "functionNames": [
+    "_FC_NAS_modern-app-new-test/nas_dir_checker"
+  ]
+}

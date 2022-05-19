@@ -1,0 +1,6 @@
+{
+  "serviceName": "_FC_NAS_modern-app-new-ensure-nas-dir-exist-service",
+  "functionNames": [
+    "_FC_NAS_modern-app-new-ensure-nas-dir-exist-service/nas_dir_checker"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "statefulConfig": {
+    "functionId": "cdd6baeb-76ae-4aa0-9150-7f5ad9cb4fb9",
+    "functionName": "nas_dir_checker",
+    "description": "This is default function description by fc-deploy component",
+    "runtime": "nodejs12",
+    "handler": "index.handler",
+    "timeout": 600,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 10692,
+    "codeChecksum": "4658448237383999029",
+    "memorySize": 128,
+    "gpuMemorySize": null,
+    "environmentVariables": {},
+    "createdTime": "2022-05-17T15:50:25Z",
+    "lastModifiedTime": "2022-05-17T16:36:01Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": null,
+    "caPort": null,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "nas_dir_checker"
+  }
+}

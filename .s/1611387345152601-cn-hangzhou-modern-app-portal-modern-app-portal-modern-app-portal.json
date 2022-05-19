@@ -1,0 +1,27 @@
+{
+  "statefulConfig": {
+    "triggerName": "modern-app-portal",
+    "description": "",
+    "triggerId": "56769f73-eaba-4239-8827-a8180aa8e5fe",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": null,
+    "urlInternet": "https://modern-p-portal-modern-p-portal-mrawiadveb.cn-hangzhou.fcapp.run",
+    "urlIntranet": "https://modern-p-portal-modern-p-portal-mrawiadveb.cn-hangzhou-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "HEAD",
+        "OPTIONS"
+      ],
+      "authType": "anonymous"
+    },
+    "createdTime": "2022-05-17T15:51:50Z",
+    "lastModifiedTime": "2022-05-17T16:35:56Z",
+    "name": "modern-app-portal"
+  }
+}

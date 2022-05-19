@@ -21,11 +21,11 @@ const dbInfo = {
   username: 'root',
   password: 'Abc12345',
 };
-if (ENV === 'prod') {
-  dbInfo.host = '10.0.224.4';
-  dbInfo.port = 25532 || 3306;
-  dbInfo.username = 'root';
-  dbInfo.password = '';
+if (ENV === 'production') {
+  dbInfo.host = process.env.dbHost || '10.0.224.4';
+  dbInfo.port = parseInt(process.env.dbPort) || 3306;
+  dbInfo.username = process.env.dbUserName || 'root';
+  dbInfo.password = process.env.dbPassword || '';
 }
 const { host, port, username, password } = dbInfo;
 
@@ -40,7 +40,7 @@ const { host, port, username, password } = dbInfo;
       database: 'devs',
       entities: [],
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     ProductsModule,

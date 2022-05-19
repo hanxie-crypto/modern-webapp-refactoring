@@ -1,0 +1,46 @@
+{
+  "statefulConfig": {
+    "functionId": "c4838629-c22c-4891-bfda-b73d014abcfe",
+    "functionName": "modern-app-new-test",
+    "description": "Native recording handler",
+    "runtime": "custom",
+    "handler": "index.handler",
+    "timeout": 3000,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 114751016,
+    "codeChecksum": "14130391854600062313",
+    "memorySize": 1024,
+    "gpuMemorySize": null,
+    "environmentVariables": {
+      "NODE_ENV": "prod",
+      "dbHost": "rm-bp1r14pl02kcfgvtnvo.mysql.rds.aliyuncs.com",
+      "dbPassword": "Abc123456",
+      "dbPort": "3306",
+      "dbUserName": "hanxie",
+      "logPath": "/mnt/auto/modern-app-new/logs/application.log",
+      "staticPath": "/mnt/auto/modern-app-new/public"
+    },
+    "createdTime": "2022-05-09T05:54:57Z",
+    "lastModifiedTime": "2022-05-09T09:02:00Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": null,
+    "caPort": 3000,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "modern-app-new-test"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "statefulConfig": {
+    "serviceName": "_FC_NAS_modern-app-portal",
+    "description": "The current resource is automatically created by Serverless Devs to operate NAS and is associated with the function service resource [modern-app-portal]. VERSION: b9f6ce0",
+    "role": "acs:ram::1611387345152601:role/aliyunfcdefaultrole",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "e188d2cb-1bf7-495b-a051-5c88b8333e84",
+    "createdTime": "2022-05-17T15:50:27Z",
+    "lastModifiedTime": "2022-05-17T15:50:28Z",
+    "vpcConfig": {
+      "vpcId": "vpc-bp16w2err60km7zno0l76",
+      "vSwitchIds": [
+        "vsw-bp1ws7xjccfw0lhbxef5e"
+      ],
+      "securityGroupId": "sg-bp1f2r7upbax6mnco6pf",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": 10003,
+      "groupId": 10003,
+      "mountPoints": [
+        {
+          "serverAddr": "0c6db49413-wxa8.cn-hangzhou.nas.aliyuncs.com:/modern-app-portal",
+          "mountDir": "/mnt/auto"
+        }
+      ]
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "_FC_NAS_modern-app-portal"
+  }
+}

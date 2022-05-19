@@ -1,0 +1,27 @@
+{
+  "statefulConfig": {
+    "triggerName": "moder-web-api",
+    "description": "",
+    "triggerId": "db3dc77a-e66c-44dc-b406-17dca43e6cf2",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": null,
+    "urlInternet": "https://modern-app-new-modern-app-new-yqdecwyara.cn-hangzhou.fcapp.run",
+    "urlIntranet": "https://modern-app-new-modern-app-new-yqdecwyara.cn-hangzhou-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "HEAD",
+        "OPTIONS"
+      ],
+      "authType": "anonymous"
+    },
+    "createdTime": "2022-05-06T12:20:34Z",
+    "lastModifiedTime": "2022-05-07T02:39:48Z",
+    "name": "moder-web-api"
+  }
+}

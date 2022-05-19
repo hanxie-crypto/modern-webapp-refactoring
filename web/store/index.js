@@ -1,3 +1,3 @@
 export const state = () => ({
-  staticHost: "http://localhost:3000/"
+  staticHost: "http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net/"
 });

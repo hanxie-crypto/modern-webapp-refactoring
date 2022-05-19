@@ -1,0 +1,10 @@
+{
+  "serviceName": "modern-app-portal",
+  "functionNames": [
+    "modern-app-portal/modern-app-portal",
+    "modern-app-portal/_FC_PLUGIN_keep-warm-modern-app-portal-modern-app-portal"
+  ],
+  "domains": [
+    "modern-app-portal.modern-app-portal.1611387345152601.cn-hangzhou.fc.devsapp.net"
+  ]
+}

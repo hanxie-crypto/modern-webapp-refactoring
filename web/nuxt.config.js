@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: "server",
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -48,21 +48,22 @@ export default {
 
   http: {
     // debug: true,
-    baseURL: "http://localhost:3000/" // Used as fallback if no runtime config is provided
+    baseURL: "http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net/" // Used as fallback if no runtime config is provided
   },
 
   server: {
-    port: "3001"
+    port: "3001",
+    host: '0.0.0.0'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  generate: {
-    routes: [
-      "products/detail/1",
-      "products/categories/1",
-      "products/categories/1/page/1",
-      "products/page/1"
-    ]
-  }
+  // generate: {
+  //   routes: [
+  //     "products/detail/1",
+  //     "products/categories/1",
+  //     "products/categories/1/page/1",
+  //     "products/page/1"
+  //   ]
+  // }
 };

@@ -1,0 +1,10 @@
+{
+  "serviceName": "modern-app-new",
+  "functionNames": [
+    "modern-app-new/modern-app-new",
+    "modern-app-new/_FC_PLUGIN_keep-warm-modern-app-new-modern-app-new"
+  ],
+  "domains": [
+    "modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net"
+  ]
+}

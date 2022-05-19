@@ -1,0 +1,37 @@
+{
+  "domainName": "modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net",
+  "accountId": "1611387345152601",
+  "protocol": "HTTP",
+  "certConfig": {
+    "certName": null,
+    "privateKey": null,
+    "certificate": null
+  },
+  "tlsConfig": {
+    "minVersion": null,
+    "maxVersion": null,
+    "cipherSuites": null
+  },
+  "apiVersion": "2016-08-15",
+  "routeConfig": {
+    "routes": [
+      {
+        "path": "/*",
+        "accountId": null,
+        "serviceName": "modern-app-new",
+        "functionName": "modern-app-new",
+        "qualifier": null,
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "HEAD",
+          "OPTIONS"
+        ]
+      }
+    ]
+  },
+  "createdTime": "2022-05-06T12:13:53Z",
+  "lastModifiedTime": "2022-05-11T11:37:37Z"
+}

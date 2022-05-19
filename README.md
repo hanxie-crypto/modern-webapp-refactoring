@@ -1,52 +1,169 @@
 
-## 传统前端应用Serverless架构重构思路介绍
-本篇在实操重构传统Serverless架构之前想系统性的介绍一下对传统前端应用到Serverless架构的思路，大家通常会认为Serverless本身是厂商绑定，不论是后端服务，开发工具链都不一致，意味着需要针对每一家云商都要学习一套重构策略。必须承认的是的确存在这种情况，真正要完成应用在每一家云商的对接和落地都有改造的成本，不过从大的重构策略上却有相对统一的方式，我们接下来聊一聊。
+## Serverless应用重构实操
+接下来我们正式开始改造，有一些准备工作需要做一下。开通阿里云的相关产品，申请自定义域名，下载开发者工具Serverless Devs，相关需要开通的产品列表如下(注：以下产品开通均不收费)
++ 阿里云函数计算
++ 阿里云OSS
++ 阿里云RDS for mysql serverless版 （也可以用已有的）
++ 阿里云Api Gateway
++ 阿里云DNS 服务
++ 阿里云NAS服务
++ 阿里云ARMS （选开）
 
-### Serverless架构的本质
-考虑到国内用户的接受度问题，国内推广Serverless应用改造更喜欢以较小成本的rehost模式。比如大部分的Serverless服务都提供了镜像部署方式，针对已有的应用，直接打包成镜像就可以完成一次部署，享受Serverless带来的高弹性，低成本优势。不过从笔者看来，Serverless的终极方向应当是以云基础设施为底座的分布式应用，我们知道一个互联网的应用真正想要对外提供可靠的服务是需要网络、计算、存储、数据库、安全等基础能力一起提供支持的，对Serverless架构应用而言此时的Serverless服务仅当提供计算的能力，其他的能力依靠别的云基础设置支持，此时可以实现算力的最大化利用。所以本质上Serverless架构是对计算力更加精细化利用的一种分布式架构。
-### 通用改造思路
-一般的应用都包含以下几个部分， 前端页面及静态资源部分（用户上传图片等），后端代码服务，日志，数据库，对于多项目的应用我们还会通过反向代理服务器实现路由分发。
-对于通常的单体应用我们会统一在虚机上安装数据库，缓存，部署Nginx反向代理，静态资源和日志都可以直接放到本地磁盘，后端代码服务放到相应的语言虚机上解释执行。
-这些改造成Serverless架构的话需要做一些拆分
+### 后台API服务
+#### 测试项目
+我们先测试一下后台部分,按照如下步骤
+- 安装好本地数据库，并进行数据初始化
+- 进入server 目录安装好依赖，执行启动指令
+- 打开浏览器访问端口查看
 
-#### 静态资源部分
-这部分可以放到云商的文件存储服务上，如阿里云的OSS,其他的云商都有类似的对标服务，基本用法差异不大
-#### 后端代码
-这部分自然是放到 云商的Serverless服务上，阿里云的FC、腾讯的SCF、AWS的lambada等
-#### 数据库
-mysql, mongodb等主流数据库目前各大厂商都有云上的对标，而且目前也都在Serverless化
+测试效果如下，接口访问没有问题，数据库内容也查询的到
+![avatar](screenshot/server/cms1.gif)
+#### 代码改造
+代码改造部分主要涉及日志和静态资源的路径，这个地方的处理我们通常使用
+***process.env*** 的方式灵活替换。
+[日志配置]
+![avatar](screenshot/server/change1.jpg)
+[文件上传]
+![avatar](screenshot/server/change2.jpg)
+[静态资源访问]
+![avatar](screenshot/server/change3.jpg)
+[数据库配置]
+![avatar](screenshot/server/change4.jpg)
+生产数据库部分请自行配置，保持跟计算服务网络畅通即可
+改造完需要执行 ***npm run build*** 生成新的生产包
+#### 配置文件
+为了做多工程的统一管理，我们需要在根目录下创建s.yaml,内容如下
+```javascript
+edition: 1.0.0
+name: modern-app-new
+access: hanxie   # 秘钥别名
+vars:
+  region: cn-hangzhou #部署region
+services:
+  modern-app-new:
+    component: fc
+      actions:
+        post-deploy:
+          - component: fc nas upload -r ./server/logs /mnt/auto/
+          - component: fc nas upload -r ./server/public /mnt/auto/
+    props:
+      region: ${vars.region}
+      service:
+        name: modern-app-new
+        description: Aliyun RAM Role
+        internetAccess: true
+        nasConfig: auto
+      function:
+        name: modern-app-new
+        description: Native recording handler
+        timeout: 3000
+        memorySize: 1024
+        runtime: custom
+        environmentVariables:
+          NODE_ENV: production
+          dbHost: ''
+          dbPort: ''
+          dbPassword: ''
+          dbUserName: ''
+          staticPath: '/mnt/auto/modern-app-new/public'
+          logPath: '/mnt/auto/modern-app-new/logs/application.log'
+        codeUri: ./server
+        caPort: 3000
+      triggers:
+        - name: moder-web-api
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              serviceName: modern-app-new
+              functionName: modern-app-new
 
-#### 日志
-日志本身也是属于文件存储，所以可以直接放到OSS，如果目前采用的有独立的日志服务需要考虑跟计算服务的网络是否相通，如果希望使用更好的服务可以考云商的日志服务 ，如阿里云SLS等
+```
+需要注意的是actions部分第一次执行的时候会创建nas目录，建议执行完毕后注释掉
+之后在server根目录下创建一个 boostrap 的文件，用来做执行启动脚本，内容如下
+```
+#!/usr/bin/env bash
+export PORT=3000
+node dist/main.js
+```
+#### 部署
+接下来的事情就变得比较简单了 该s.yaml同级目录下执行 ***s deploy***
+![avatar](screenshot/server/cms2.gif)
+#### 查看
+最直接的是访问一下返回的自定义域名
+比如 http://modern-app-new.modern-app-new.xxxxx.cn-hangzhou.fc.devsapp.net，你可以得到一个"Hello World" 
+的返回，以为生产环境是不提供swagger访问页面，我们可以通过构造curl请求来查看时候接口api 也可以返回
 
-#### 路由分发
+```
+curl -X 'GET' \
+  'http://modern-app-new.modern-app-new.xxxxx.cn-hangzhou.fc.devsapp.net/api/banner?page=1&limit=10' \
+  -H 'accept: */*'
+```
 
-使用云上的api网关的服务来替代nginx是一个很好的选项，相较于nginx一方面整个路由配置可视化，另外一方面向限流，权限验证等都可以直接利用已有的能力做，省时省力。而且
+测试效果如下
+![avatar](screenshot/server/change5.jpg)
+说明暂时成功，关于文件上传写入的部分现在还没法测试，等搞完管理后台可以再看看
 
-#### 可观测
-分布式的应用带来的困难就是系统问题定位，一般而言云服务都会提供相应的可观测能力，当然也可以使用专业的可观测类产品，比如阿里云ARMS，提供了业务前端监控和全链路监控等能力，可以解决分布式架构的可观测问题。
+### 后台管理员页面
+#### 云上云下调试
+先在本地测试一下线上接口服务，替换掉相应的服务配置
+![avatar](screenshot/server/change6.jpg)
 
-#### 域名绑定及安全
-dns解析到 网关到静态资源等都是必须的这些会在接下来做详细介绍，关于安全的诉求上面的各个服务都提供了一定的支持，当然也可以根据业务发展诉求使用更加专业的云产品。
+效果如下
+![avatar](screenshot/server/cms3.gif)
 
-### 工程化的方案
-看到上面的改造思路，你或许已经开始打退棠鼓，对此繁多复杂的程序步骤感到恐惧，其实以上这些也是早期困扰Serverless落地的原因，分布式应用的缺点也暴露无遗。 好在我们有专门解决Serverless应用部署构建问题的开发者工具Serverless Devs，他凭借高度可扩展的能力和对云商的Iac(基础设施即代码)能力，可以通过统一工程化的方式解决以上这些步骤的离散管理问题，也就是说即使你不了解以上每一个步骤背后的实现原理也没关系，不影响你用工程脚手架的方式开发部署你的Serverless架构应用。关于Serverlss devs 的详细介绍这里就不做赘述，如果大家有兴趣可以自行去官网查询使用。本系列文章也会为大家展示如何制作一个Serverless应用的脚手架出来
+基本能力是可以的，接下来测试上传部分
+![avatar](screenshot/server/cms4.gif)
 
-### 传统内容管理系统到Serverless架构的对标
-现在进入正题,本次改造的项目本身其实非常实用并且在技术上也相对比较前沿的。 说他实用是因为这是一个内容管理系统，非常适合企业站点展示，创新项目展示等。包含了主页展示工程、后端headless api工程、管理后台三个子项，这种构成是标准的独立站点形式，在进一步的话完全可以做成一个电商系统，我们知道目前跨境电商很多玩家都是独立站+tiktok这样的玩法，包括国内做私域流量也可，用独立站作为流量的汇总。所以从需求上此类项目不会少。
-就技术而言呢也可圈可点， 主页工程使用的是vue 的 next.js框架，你可以选择JAMStack策略，直接渲染成纯静态方案，保障SEO、用户访问体验、安全等，也可以选择 SSR方案做服务端渲染，同样在性能和SEO上友好，不过SSR也会需要耗费更多的计算力。本次我们准备先采用 JAMStack方案，方便做静态资源的部署。 后端api部分则使用了Nest.js，对标Spring boots 的nodejs框架，后端接口写起来非常的优雅，实现JWT方案也轻松自如，另外据说有家云商的网关也是采用此框架，实战验证他能够承受超高并发，所以完全不用担心系统会过载（当然serverless服务也会支持高负载），后端管理系统使用的是vue 的elemnt ui库，简洁大方。操作起来也十分方便。
+发现上传是可以，不过显示有问题。这里可以根据fc 提供的日志能力在线查询
+![avatar](screenshot/server/change7.jpg) ，进一步排查问题，最终定位到是文件路径的问题，
+修复的代码已经放到仓库，大家可以自行查看。
+最终效果如下：
+![avatar](screenshot/server/cms5.gif)
 
-#### 上云方案
-+ 后端api服务使用阿里云函数计算服务，部署方式暂时先用custom runtime形式用最少的改动方式，后续准备改造成
-nodejs runtime。
-+ 数据库部分因为本身项目是使用的mysql，此时采用阿里云rds for mysql serverless版
-+ 日志和后台的用户静态资源准备先使用 阿里云NAS 文件存储，后续考虑专门的日志服务和讲图片资源迁移到阿里云OSS
-+ 后台管理页面和前台主界面准备直接存到阿里云OSS做静态站点
-+ 增加阿里云apigateway 做路由分发，并且通过dns 做网关的域名二级绑定，保持站点的统一性
-#### 访问架构设计
-根据上面的上云方案，整体访问架构设计也呼之欲出
-![avatar](https://img.alicdn.com/imgextra/i2/O1CN01qhRhWZ1vJfLtsXFeN_!!6000000006152-2-tps-2184-828.png)
+#### 部署方案
+像这种纯静态的站点内容部署其实相对容易，我们只要打包成静态资源，丢到oss存储上即可，Serverless Devs 还提供了一些额外的服务，会自动帮你生成一个可访问域名。避免OSS自身的访问下载限制。当然纯静态的独立域是无法访问部署到fc 的api服务的，会有跨域问题，所以需要引入类似nginx的代理服务器设置，这里我们准备选择阿里云apigateway 来做这件事，关于apigateway放到下一步去看，此时先搞定admin的静态部署。接下来开始操作
+##### 1. 构建admin静态资源
+根据需要修改 vue.config.js（比如构建路径相对化），之后执行 ***npm run build:prod***
 
+##### 2.配置s.yaml文件(截取service部分)
+```yaml
+www: # 静态资源
+  component: oss
+  props:
+    region: ${vars.region}
+    bucket: ${vars.oss.bucketName} # OSS bucket 自动生成
+    subDir: ${vars.oss.bucketObject}
+    acl: public-read # 读写权限
+    codeUri: ./admin/dist # 指定本地要上传目录文件地址
+    website: # OSS 静态网站配置
+      index: index.html # 默认首页
+      error: 404.html # 默认 404 页
+      subDirType: redirect # 子目录首页 404 规则
+    customDomains: # OSS 绑定域名
+      - domainName: auto
+        protocol: HTTP
+```
 
-### 各云商相关产品对照表
+##### 3.部署静态资源
+执行 ***s www deploy***
+![avatar](screenshot/server/cms7.gif)
+最终自定义域名要先解析到cdn，再回源给 oss，这个时间可能会有几分钟延迟,不过最终确定结果是没问题的
+![avatar](screenshot/server/change9.jpg)
 
+### 网关设置
+接下来需要设置网关将后台服务和管理页面进行合并，从网关的设置上目前需要三个两个路由规则
++ 1.转发根目录到静态资源  /*
++ 2.转发api路径到动态函数服务 /prod-api/*
++ 3.上传文件需要的路径  /uploads/*

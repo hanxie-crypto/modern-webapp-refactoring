@@ -1,0 +1,38 @@
+{
+  "statefulConfig": {
+    "functionId": "1cd99f16-8136-495c-b992-f50626343911",
+    "functionName": "modern-app-portal",
+    "description": "Native recording handler",
+    "runtime": "custom",
+    "handler": "index.handler",
+    "timeout": 3000,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 51430275,
+    "codeChecksum": "5999968799436189094",
+    "memorySize": 1024,
+    "gpuMemorySize": null,
+    "environmentVariables": {},
+    "createdTime": "2022-05-17T15:51:50Z",
+    "lastModifiedTime": "2022-05-17T16:35:50Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": null,
+    "caPort": 3001,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "modern-app-portal"
+  }
+}

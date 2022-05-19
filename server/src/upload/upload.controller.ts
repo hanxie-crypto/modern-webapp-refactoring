@@ -19,7 +19,7 @@ import { Log } from 'src/libs/utils';
 
 const { NODE_ENV } = process.env;
 const baseHost = baseHosts[NODE_ENV] || {
-  uploadPath: 'public/',
+  uploadPath: 'public',
   baseHost: 'http://localhost:3000/',
   domain: 'www.giibee.com',
 };
@@ -32,7 +32,7 @@ export class UploadController {
     // see https://www.techiediaries.com/nestjs-upload-serve-static-file/
     FileInterceptor('upload', {
       storage: diskStorage({
-        destination: `./${baseHost.uploadPath}uploads/`,
+        destination: `${baseHost.uploadPath}/uploads/`,
         filename: (_req, file, cb) => {
           file = file.upload ? file.upload : file;
           // console.log('fiel', file, _req)
@@ -67,7 +67,7 @@ export class UploadController {
     // upload.url = path.replace('public/', 'http://localhost:3000/')
     upload.url = path.replace(baseHost.uploadPath, baseHost.baseHost);
     upload.fileName = filename;
-
+    upload.path = upload.url; // 上传入库的图片地址改成相对路径
     if (mimetype.includes('image')) {
       // 图片上传增加水印功能
       const text = baseHost.domain;

@@ -1,0 +1,41 @@
+{
+  "statefulConfig": {
+    "functionId": "b77bac1b-77b6-446d-bb61-9f2b900a6228",
+    "functionName": "_FC_PLUGIN_keep-warm-modern-app-portal-modern-app-portal",
+    "description": "当前定时函数由Serverless Devs自动创建，用于定时预热函数【modern-app-portal】",
+    "runtime": "python3",
+    "handler": "index.handler",
+    "timeout": 1,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 289,
+    "codeChecksum": "8458871405567409789",
+    "memorySize": 128,
+    "gpuMemorySize": null,
+    "environmentVariables": {
+      "KEEP_WARM_FC_METHOD": "head",
+      "KEEP_WARM_FC_URL": "http://modern-app-portal.modern-app-portal.1611387345152601.cn-hangzhou.fc.devsapp.net"
+    },
+    "createdTime": "2022-05-17T15:52:04Z",
+    "lastModifiedTime": "2022-05-17T16:36:05Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": null,
+    "caPort": null,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "_FC_PLUGIN_keep-warm-modern-app-portal-modern-app-portal"
+  }
+}
