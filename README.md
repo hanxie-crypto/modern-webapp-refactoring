@@ -8,7 +8,11 @@
 + 阿里云DNS 服务
 + 阿里云NAS服务
 + 阿里云ARMS （选开）
-
+### 预览地址
+#### portal 页
+http://hanxie-modernweb-registery.oss.devsapp.net/
+#### 管理员页
+http://hanxie-modernweb-registery.oss.devsapp.net/admin/
 ### 后台API服务
 #### 测试项目
 我们先测试一下后台部分,按照如下步骤
@@ -167,3 +171,12 @@ www: # 静态资源
 + 1.转发根目录到静态资源  /*
 + 2.转发api路径到动态函数服务 /prod-api/*
 + 3.上传文件需要的路径  /uploads/*
+
+![avatar](screenshot/server/change10.jpg)
+值得注意的是api网关的额后端服务部分不管是oss还是动态的函数都要选择 Http(s)服务，单纯做转发。
+oss是因为使用的共享实例，不支持直接由网关转发给oss，这块如果采用了专享实例还是建议直接使用oss
+,函数计算没有被选择是因为网关转发到函数计算的Http触发器的时候会携带额外的请求头，导致业务的jwt验证失效，因此这两个全部都以转发web服务的方式进行。当一切就绪之后，再对网关做域名绑定，比如这里
+![avatar](screenshot/server/change11.jpg)
+用
+abc.serverless-developer.com进行了绑定，输入域名之后我们访问即可看到效果。
+
