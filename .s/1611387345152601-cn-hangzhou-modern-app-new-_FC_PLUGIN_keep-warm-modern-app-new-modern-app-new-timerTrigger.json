@@ -2,7 +2,7 @@
   "statefulConfig": {
     "triggerName": "timerTrigger",
     "description": "",
-    "triggerId": "372a21e9-e8f6-44d8-9d03-c761bfa14e95",
+    "triggerId": "b99b58a5-ac31-40a4-8b5d-6b85b494d557",
     "sourceArn": null,
     "triggerType": "timer",
     "invocationRole": null,
@@ -14,8 +14,8 @@
       "cronExpression": "@every 2m",
       "enable": true
     },
-    "createdTime": "2022-05-11T11:37:46Z",
-    "lastModifiedTime": "2022-05-11T11:37:46Z",
+    "createdTime": "2022-06-08T13:02:48Z",
+    "lastModifiedTime": "2022-06-08T13:02:48Z",
     "name": "timerTrigger"
   }
 }

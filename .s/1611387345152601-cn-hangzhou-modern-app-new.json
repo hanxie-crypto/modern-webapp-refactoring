@@ -12,7 +12,7 @@
     },
     "serviceId": "8c866f2e-1da9-4641-92f4-d628e9a1bc28",
     "createdTime": "2022-05-09T09:16:18Z",
-    "lastModifiedTime": "2022-05-11T11:37:46Z",
+    "lastModifiedTime": "2022-06-08T13:02:48Z",
     "vpcConfig": {
       "vpcId": "vpc-bp16w2err60km7zno0l76",
       "vSwitchIds": [

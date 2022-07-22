@@ -1,6 +1,6 @@
 {
   "statefulConfig": {
-    "functionId": "f8cb34de-7fe2-43fb-9128-836f37056dcd",
+    "functionId": "2b5f777a-d947-4cda-97f8-5dc2c6732fbc",
     "functionName": "_FC_PLUGIN_keep-warm-modern-app-new-modern-app-new",
     "description": "当前定时函数由Serverless Devs自动创建，用于定时预热函数【modern-app-new】",
     "runtime": "python3",
@@ -16,8 +16,8 @@
       "KEEP_WARM_FC_METHOD": "head",
       "KEEP_WARM_FC_URL": "http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net"
     },
-    "createdTime": "2022-05-11T11:37:46Z",
-    "lastModifiedTime": "2022-05-11T11:37:46Z",
+    "createdTime": "2022-06-08T13:02:48Z",
+    "lastModifiedTime": "2022-06-08T13:02:48Z",
     "instanceConcurrency": 1,
     "instanceSoftConcurrency": null,
     "customContainerConfig": null,

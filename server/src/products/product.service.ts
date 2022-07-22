@@ -5,13 +5,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like, Raw, In } from 'typeorm';
 import { cryptoString } from '../libs/lib';
 import { RemoveProductDto } from './dto/remove-product.dto';
-
+import { SSG } from '../eventbridge';
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
     private productsRepository: Repository<Product>,
-  ) {}
+  ) { }
 
   // 增加
   async create(createProductDto: CreateProductDto): Promise<any> {
@@ -32,6 +32,7 @@ export class ProductsService {
   }
 
   // 更新
+  @SSG('GO')
   async update(updateProductData): Promise<any> {
     const { id, updateProductDto } = updateProductData;
     updateProductDto.updatedAt = new Date();

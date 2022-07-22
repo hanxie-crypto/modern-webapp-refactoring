@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "server",
+  target: "static",
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -58,12 +58,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  // generate: {
-  //   routes: [
-  //     "products/detail/1",
-  //     "products/categories/1",
-  //     "products/categories/1/page/1",
-  //     "products/page/1"
-  //   ]
-  // }
+  generate: {
+    routes: [
+      "products/detail/1",
+      "products/categories/1",
+      "products/categories/1/page/1",
+      "products/page/1"
+    ]
+  }
 };

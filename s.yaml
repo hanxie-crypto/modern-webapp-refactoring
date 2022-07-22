@@ -12,8 +12,9 @@ vars:
   oss:
     bucketName: 'hanxie-modernweb-registery'
     bucketObject: 'admin'
+    bucketObject2: 'portal'
 services:
-  www: # 静态资源
+  www-admin: # 静态资源
     component: oss
     props:
       region: ${vars.region}
@@ -28,7 +29,7 @@ services:
       # customDomains: # OSS 绑定域名
       #   - domainName: auto
       #     protocol: HTTP
-  modern-app-new:
+  api-server:
     component: fc
     actions:
       post-deploy: # 在deploy之后运行
@@ -81,7 +82,7 @@ services:
             - path: /*
               serviceName: ${vars.fc.serviceName}
               functionName:  ${vars.fc.functionName}
-  modern-app-portal:
+  ssr-portal:
     component: fc
     actions:
       post-deploy: # 在deploy之后运行
