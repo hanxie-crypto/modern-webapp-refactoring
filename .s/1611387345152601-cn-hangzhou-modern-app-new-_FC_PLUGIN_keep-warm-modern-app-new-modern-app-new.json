@@ -9,7 +9,7 @@
     "initializer": "",
     "initializationTimeout": 3,
     "codeSize": 289,
-    "codeChecksum": "8458871405567409789",
+    "codeChecksum": "9314738351274312454",
     "memorySize": 128,
     "gpuMemorySize": null,
     "environmentVariables": {
@@ -17,7 +17,7 @@
       "KEEP_WARM_FC_URL": "http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net"
     },
     "createdTime": "2022-06-08T13:02:48Z",
-    "lastModifiedTime": "2022-06-08T13:02:48Z",
+    "lastModifiedTime": "2022-08-11T07:39:39Z",
     "instanceConcurrency": 1,
     "instanceSoftConcurrency": null,
     "customContainerConfig": null,

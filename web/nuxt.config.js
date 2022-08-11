@@ -4,14 +4,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "GiiBee CMS",
+    title: "Serverless CMS DEMO",
     htmlAttrs: {
       lang: "zh-cn"
     },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "GiiBee CMS" },
+      { hid: "description", name: "description", content: "Serverless CMS DEMO" },
       { name: "format-detection", content: "telephone=no" },
       { name: "theme-color", content: "#009bb1" }
     ],
@@ -48,7 +48,7 @@ export default {
 
   http: {
     // debug: true,
-    baseURL: "http://modern-app-new.modern-app-new.1611387345152601.cn-hangzhou.fc.devsapp.net/" // Used as fallback if no runtime config is provided
+    baseURL: "http://hanxie-modernweb-registery.oss.devsapp.net/" // Used as fallback if no runtime config is provided
   },
 
   server: {

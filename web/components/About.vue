@@ -51,7 +51,11 @@ export default {
     }
   },
   data: () => ({
-    detail: {},
+    detail: {
+      banner: '',
+      name: '',
+      content: ''
+    },
     items: [
       {
         text: "首页",
@@ -76,12 +80,11 @@ export default {
     };
   },
   async fetch() {
-    console.log(`api/about/${this.category}`)
     const detail = await this.$http.$get(`api/about/${this.category}`);
-    console.log(detail,'dd')
     const { name } = detail;
     this.items[1].text = name;
     this.detail = detail;
+ 
   },
   computed: {
     staticHost() {
