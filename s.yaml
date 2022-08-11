@@ -88,7 +88,7 @@ services:
       post-deploy: # 在deploy之后运行
       - plugin: keep-warm-fc
         args:
-          url: http://modern-app-portal.modern-app-portal.1611387345152601.cn-hangzhou.fc.devsapp.net
+          url: http://modern-app-portal.modern-app-portal.xxxx.cn-hangzhou.fc.devsapp.net
     # actions:
     #   post-deploy:
     #     - component: fc nas upload -r ./server/logs /mnt/auto/modern-app-new
