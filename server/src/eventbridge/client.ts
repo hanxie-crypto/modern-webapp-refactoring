@@ -11,9 +11,9 @@ export default class Client {
     static async createClient(): Promise<EventBridge> {
         let config = new $EventBridge.Config({ });
         // 您的AccessKey ID。
-        config.accessKeyId = "LTAI5tQgKBbvBGKgo23yaFek";
+        config.accessKeyId = "";
         // 您的AccessKey Secret。
-        config.accessKeySecret = "NPMGP2ypEqJcY4oJYZdkv2caqbyMM9";
+        config.accessKeySecret = "";
         // 您的接入点。
         config.endpoint = "1611387345152601.eventbridge.cn-shenzhen.aliyuncs.com";
         return new EventBridge(config);
