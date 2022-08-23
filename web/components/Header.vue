@@ -8,7 +8,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="/">首页</b-nav-item>
+            <b-nav-item href="/">首页展示</b-nav-item>
             <b-nav-item href="/products">产品展示</b-nav-item>
             <b-nav-item href="/about">关于我们</b-nav-item>
             <b-nav-item href="/contact">联系我们</b-nav-item>
