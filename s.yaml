@@ -1,6 +1,6 @@
 edition: 1.0.0
 name: modern-app-new
-access: hanxie
+access: default
 vars:
   region: cn-hangzhou
   fc: 
