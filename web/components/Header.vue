@@ -2,7 +2,7 @@
   <header class="header--  shadow-sm_ position-fixed">
     <b-navbar toggleable="lg" type="dark" variant="info">
       <div class="container">
-        <b-navbar-brand href="/">Serverless CMS DEMO</b-navbar-brand>
+        <b-navbar-brand href="/">Serverless CMS DEMO Show</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
