@@ -2,7 +2,10 @@ import EventBridge, * as $EventBridge from '@alicloud/eventbridge';
 import Util from '@alicloud/tea-util';
 import Console from '@alicloud/tea-console';
 import * as $tea from '@alicloud/tea-typescript';
-
+type Test = {
+    name:string,
+    title:string
+}
 export default class Client {
 
     /**
