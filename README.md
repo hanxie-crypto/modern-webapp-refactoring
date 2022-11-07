@@ -169,7 +169,8 @@ www: # 静态资源
 ```
 
 ##### 3.部署静态资源
-执行 ***s www deploy***
+
+测试执行 ***s www deploy***
 ![avatar](screenshot/server/cms7.gif)
 最终自定义域名要先解析到cdn，再回源给 oss，这个时间可能会有几分钟延迟,不过最终确定结果是没问题的
 ![avatar](screenshot/server/change9.jpg)
