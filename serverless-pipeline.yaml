@@ -11,7 +11,7 @@ env:
   name: Heimanba
   age: 30
 steps:
-  - run: npm i @serverless-devs/s -g
+  - run: npm i @serverless-devs/s -g --registry=https://registry.npmmirror.com
   - run: s -v
   - run: echo 'Hi {{ env.name }}'  # Hi Heimanba
   - run: echo 'Hi {{ env.name }}'  # Hi Tony
